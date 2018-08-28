@@ -21,7 +21,7 @@ public class ListaCompraServiceImpl implements ListaCompraService {
 	
 	@Override
 	public Optional<ListaCompra> getAllListaCompra(Long id) {
-		log.info("Buscando Todas as Lista de Compras de um unico Usuário Pelo ID ", id);
+		log.info("Buscando Todas as Lista de Compras de um unico Usuario Pelo ID ", id);
 		return null;
 	}
 
@@ -33,7 +33,7 @@ public class ListaCompraServiceImpl implements ListaCompraService {
 
 	@Override
 	public ListaCompra getListaCompraByUser(Long userId) {
-		log.info("Buscando Todas as Lista de Compras de um unico Usuário Pelo ID ", userId);
+		log.info("Buscando Todas as Lista de Compras de um unico Usuario Pelo ID ", userId);
 		return this.listaCompraRepository.findByUserId(userId);
 	}
 }

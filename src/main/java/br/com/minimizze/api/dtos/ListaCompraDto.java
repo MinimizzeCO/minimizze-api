@@ -17,7 +17,7 @@ public class ListaCompraDto extends AbstractEntityDto implements Serializable {
 	private Long id;
 
 	@NotNull
-	@NotEmpty(message="Nome não Pode Ser Vazio.")
+	@NotEmpty(message="Nome nao Pode Ser Vazio.")
 	private String nome;
 	private List<Produto> produtos;
 

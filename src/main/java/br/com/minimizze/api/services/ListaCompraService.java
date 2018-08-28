@@ -7,7 +7,7 @@ import br.com.minimizze.api.entities.ListaCompra;
 public interface ListaCompraService {
 
 	/**
-	 * Retorna Todas as Listas de Compras de um Usuário
+	 * Retorna Todas as Listas de Compras de um Usuario
 	 * 
 	 * @param id
 	 * 
@@ -24,7 +24,7 @@ public interface ListaCompraService {
 	Optional <ListaCompra> getListaCompra(Long id);
 	
 	/**
-	 * Retorna uma Listas de Compras de um Usuário
+	 * Retorna uma Listas de Compras de um Usuario
 	 * 
 	 * @param ListaId
 	 * @param UserId
