@@ -7,7 +7,7 @@ import br.com.minimizze.api.entities.User;
 public interface UserService {
 
 	/**
-	 * Busca um Usuário Pelo Email
+	 * Busca um Usuario Pelo Email
 	 * 
 	 * @param email
 	 * @return User

@@ -17,7 +17,7 @@ public class CadastroLCDto extends AbstractEntityDto implements Serializable {
 	private Long id;
 
 	@NotNull
-	@NotEmpty(message="Nome n„o Pode Ser Vazio.")
+	@NotEmpty(message="Nome n√£o Pode Ser Vazio.")
 	private String nome;
 
 	private List<Produto> produtos;

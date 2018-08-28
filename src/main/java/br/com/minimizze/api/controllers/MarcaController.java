@@ -81,7 +81,7 @@ public class MarcaController {
 	}
 
 	/**
-	 * Converte a Marca Dto para uma Marca Entitie
+	 * Converte a Marca Dto para uma Marca Entities
 	 * 
 	 * @param MarcaDto
 	 * @param result
@@ -96,7 +96,7 @@ public class MarcaController {
 	}
 
 	/**
-	 * Verifica se a Marca J· Existe
+	 * Verifica se a Marca j√° Existe
 	 * 
 	 * @param MarcaDto
 	 * @param result
@@ -105,9 +105,9 @@ public class MarcaController {
 	private void validarDadosExistentes(MarcaDto cadastroMarcaDto, BindingResult result) {
 		/*Optional<Marca> marca = this.marcaService.getMarca(cadastroMarcaDto.getId());
 		if (!marca.isPresent()) {
-			result.addError(new ObjectError("marca", "Est· Marca j· foi Cadastrada no Sistema."));
+			result.addError(new ObjectError("marca", "Esta Marca j√° foi Cadastrada no Sistema."));
 		}*/
 		this.marcaService.gerMarcaByNome(cadastroMarcaDto.getNome())
-		.ifPresent(marc -> result.addError(new ObjectError("marca", "Est· Marca j· foi Cadastrada no Sistema.")));
+		.ifPresent(marc -> result.addError(new ObjectError("marca", "Esta Marca ja foi Cadastrada no Sistema.")));
 	}
 }
