@@ -1,5 +1,12 @@
 language: java
 jdk:
   - oraclejdk8
+services:
+  - mysql
 before_install:
   - chmod +x gradlew
+before_install:
+  - mysql -e 'CREATE DATABASE minimizze2;'
+  - sudo mysql -e "use minimizze2; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade -u root -pnew_password
+  - sudo service mysql restart
