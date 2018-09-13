@@ -5,4 +5,4 @@ services:
   - mysql
 before_install:
   - chmod +x gradlew
-  - mysql -e 'CREATE DATABASE minimizze2;';
+   - mysql -e 'CREATE DATABASE IF NOT EXISTS minimizze2;'
