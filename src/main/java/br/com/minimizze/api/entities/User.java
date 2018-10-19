@@ -25,22 +25,22 @@ public class User {
 	private String fbID;
 	private String nome;
 	private String email;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
 	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<ListaCompra> listaCompras;
-	
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Produto> favoritos;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
 	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Similar> similar;
-	
+
 	private int pontuacao;
-	
-		public Long getId() {
+
+	public Long getId() {
 		return id;
 	}
 	public String getNome() {

@@ -25,4 +25,17 @@ public class UserServiceImpl implements UserService {
 		return Optional.ofNullable(this.userRepository.findByEmail(email));
 	}
 
+	@Override
+	public User persistir(User user) {
+		// TODO Auto-generated method stub
+		log.info("Salvando User: ",user.getNome());
+		return this.userRepository.save(user);
+	}
+
+	@Override
+	public Optional<User> getUserByFbID(String fbId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
