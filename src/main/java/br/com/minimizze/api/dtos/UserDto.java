@@ -11,12 +11,12 @@ public class UserDto extends AbstractEntityDto {
     private Long id;
     
 	@NotNull
-	private String fbID;
+	private String fbid;
 	
 	@NotNull    
     @Size(min = 10, max = 50)
-    @Pattern(regexp = "[^0-9]*", message = "NÃ£o Pode Conter Numeros")
-	private String nome;
+    @Pattern(regexp = "[^0-9]*", message = "Não Pode Conter Numeros")
+	private String name;
 	
 	@NotNull
 	private String email;
@@ -30,8 +30,8 @@ public class UserDto extends AbstractEntityDto {
 		public Long getId() {
 		return id;
 	}
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 	public String getEmail() {
 		return email;
@@ -46,8 +46,8 @@ public class UserDto extends AbstractEntityDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public void setEmail(String email) {
 		this.email = email;
@@ -73,11 +73,11 @@ public class UserDto extends AbstractEntityDto {
 	public void setSimilar(List<SimilarDto> similar) {
 		this.similar = similar;
 	}
-	public String getFbID() {
-		return fbID;
+	public String getFbid() {
+		return fbid;
 	}
-	public void setFbID(String fbID) {
-		this.fbID = fbID;
+	public void setFbid(String fbid) {
+		this.fbid = fbid;
 	}
 	
 

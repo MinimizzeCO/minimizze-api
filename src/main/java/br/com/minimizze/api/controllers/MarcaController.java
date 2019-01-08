@@ -1,6 +1,7 @@
 package br.com.minimizze.api.controllers;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +24,8 @@ import br.com.minimizze.api.response.Response;
 import br.com.minimizze.api.services.MarcaService;
 
 @RestController
-@RequestMapping("/api/cadastro-marca")
 @CrossOrigin(origins = "*")
+@RequestMapping(value = "/api/")
 public class MarcaController {
 
 	private static final Logger log = LoggerFactory.getLogger(MarcaController.class);
@@ -45,6 +47,7 @@ public class MarcaController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping
+	@RequestMapping(value = "cadastro-marca")
 	public ResponseEntity<Response<MarcaDto>> cadastrar(@Valid @RequestBody MarcaDto cadastroMarcaDto,BindingResult result) throws NoSuchAlgorithmException{
 		log.info("Cadastrando Marca",cadastroMarcaDto.toString());
 		
@@ -62,6 +65,22 @@ public class MarcaController {
 		
 		response.setData(this.marcaToMarcaDto(marca));
 		return ResponseEntity.ok(response);
+	}
+	
+	/**
+	 * Retorna todas as Marca do Sistema
+	 * 
+	 * @return ResponseEntity<List<Marca>>
+	 * @throws NoSuchAlgorithmException
+	 */
+	@GetMapping
+	@RequestMapping(value = "marcas")
+	public ResponseEntity<List<Marca>> getMarcas() throws NoSuchAlgorithmException{
+		
+		List<Marca> marca = this.marcaService.getAllMarcas();
+		//marca.addAll(this.marcaService.getAllMarcas());
+		
+		return ResponseEntity.ok(marca);
 	}
 	
 	/**

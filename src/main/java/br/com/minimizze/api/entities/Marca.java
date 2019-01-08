@@ -15,7 +15,7 @@ public class Marca {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private Boolean valido;
+	private boolean valido;
 	private int pontuacao;
 
 	public Long getId() {

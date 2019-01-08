@@ -1,6 +1,7 @@
 package br.com.minimizze.api.controllers;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +24,8 @@ import br.com.minimizze.api.response.Response;
 import br.com.minimizze.api.services.UserService;
 
 @RestController
-@RequestMapping("/api/cadastro-user")
 @CrossOrigin(origins = "*")
+@RequestMapping(value = "/api/user/")
 public class UserController {
 
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -36,7 +38,7 @@ public class UserController {
 	}
 	
 	/**
-	 * Cadastra um novo Usu√°rio no Sistema
+	 * Cadastra um novo Usu·rio no Sistema
 	 * 
 	 * @param UserDto
 	 * @param result
@@ -45,6 +47,7 @@ public class UserController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping
+	@RequestMapping(value = "store")
 	public ResponseEntity<Response<UserDto>> cadastrar(@Valid @RequestBody UserDto cadastroUserDto,BindingResult result) throws NoSuchAlgorithmException{
 		log.info("Cadastrando user",cadastroUserDto.toString());
 		
@@ -65,6 +68,21 @@ public class UserController {
 	}
 	
 	/**
+	 * Retorna Todos os Usu·rios no Sistema
+	 * 
+	 * @return ResponseEntity<List<UserDto>>
+	 * @throws NoSuchAlgorithmException
+	 */
+	
+	@GetMapping
+	@RequestMapping(value = "getall")
+	public ResponseEntity<List<User>> getUsers() {
+		List<User> users = this.userService.getAll();
+		
+		return ResponseEntity.ok(users);
+	}
+	
+	/**
 	 * Converte um User Entitie para um UserDto
 	 * 
 	 * @param user
@@ -76,9 +94,9 @@ public class UserController {
 		UserDto userDto= new UserDto();
 		
 		userDto.setId(user.getId());
-		userDto.setNome(user.getNome());
+		userDto.setName(user.getName());
 		userDto.setEmail(user.getEmail());
-		userDto.setFbID(user.getFbID());
+		userDto.setFbid(user.getFbid());
 		return userDto;
 	}
 
@@ -93,14 +111,14 @@ public class UserController {
 	private User UserDtoTouser(@Valid UserDto cadastroUserDto, BindingResult result) 
 		throws NoSuchAlgorithmException{
 		User user = new User();
-		user.setNome(cadastroUserDto.getNome());
+		user.setName(cadastroUserDto.getName());
 		user.setEmail(cadastroUserDto.getEmail());
-		user.setFbID(cadastroUserDto.getFbID());
+		user.setFbid(cadastroUserDto.getFbid());
 		return user;
 	}
 
 	/**
-	 * Verifica se a user j√° Existe
+	 * Verifica se a user j· Existe
 	 * 
 	 * @param UserDto
 	 * @param result
@@ -109,7 +127,7 @@ public class UserController {
 	private void validarDadosExistentes(UserDto cadastroUserDto, BindingResult result) {
 		/*Optional<user> user = this.userService.getuser(cadastroUserDto.getId());
 		if (!user.isPresent()) {
-			result.addError(new ObjectError("user", "Esta user j√° foi Cadastrada no Sistema."));
+			result.addError(new ObjectError("user", "Esta user j· foi Cadastrada no Sistema."));
 		}*/
 		this.userService.getUserByEmail(cadastroUserDto.getEmail())
 		.ifPresent(user -> result.addError(new ObjectError("user", "Esta user ja foi Cadastrada no Sistema.")));

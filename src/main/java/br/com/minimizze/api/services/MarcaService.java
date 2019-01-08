@@ -8,7 +8,7 @@ import br.com.minimizze.api.entities.Marca;
 public interface MarcaService {
 
 	/**
-	 * Persiste um Funcionario
+	 * Persiste uma Marca
 	 * 
 	 * @param Marca
 	 * @return Marca

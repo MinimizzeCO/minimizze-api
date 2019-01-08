@@ -22,8 +22,8 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-	private String fbID;
-	private String nome;
+	private String fbid;
+	private String name;
 	private String email;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
@@ -43,8 +43,8 @@ public class User {
 	public Long getId() {
 		return id;
 	}
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 	public String getEmail() {
 		return email;
@@ -59,8 +59,8 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public void setEmail(String email) {
 		this.email = email;
@@ -86,11 +86,11 @@ public class User {
 	public void setSimilar(List<Similar> similar) {
 		this.similar = similar;
 	}
-	public String getFbID() {
-		return fbID;
+	public String getFbid() {
+		return fbid;
 	}
-	public void setFbID(String fbID) {
-		this.fbID = fbID;
+	public void setFbid(String fbid) {
+		this.fbid = fbid;
 	}
 	
 

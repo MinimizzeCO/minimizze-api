@@ -14,9 +14,9 @@ import javax.persistence.NamedQuery;
 
 @NamedQueries({	  
 	  @NamedQuery(name = "Similar.consultarTodosPorUsuario",
-      			  query = "SELECT s FROM Similar s WHERE s.user.fbID =:fbId"),
+      			  query = "SELECT s FROM Similar s WHERE s.user.fbid =:fbid"),
 	  @NamedQuery(name = "Similar.consultarPorUsuarioProdutoId",
-		  query = "SELECT s FROM Similar s WHERE s.user.fbID =:fbId AND s.produtoOrigem.id =:produtoOrigemId")
+		  query = "SELECT s FROM Similar s WHERE s.user.fbid =:fbid AND s.produtoOrigem.id =:produtoOrigemId")
 	})
 @Entity
 public class Similar {

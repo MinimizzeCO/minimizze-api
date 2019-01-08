@@ -15,7 +15,7 @@ import br.com.minimizze.api.services.MarcaService;
 @Service
 public class MarcaServiceImpl implements MarcaService {
 
-	private static final Logger log = LoggerFactory.getLogger(ListaCompraServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(MarcaServiceImpl.class);
 
 	@Autowired
 	private MarcaRepository marcaRepository;

@@ -1,5 +1,6 @@
 package br.com.minimizze.api.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ import br.com.minimizze.api.services.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-	private static final Logger log = LoggerFactory.getLogger(ListaCompraServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -28,14 +29,20 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User persistir(User user) {
 		// TODO Auto-generated method stub
-		log.info("Salvando User: ",user.getNome());
+		log.info("Salvando User: ",user.getName());
 		return this.userRepository.save(user);
 	}
 
 	@Override
-	public Optional<User> getUserByFbID(String fbId) {
+	public Optional<User> getUserByFbid(String fbId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<User> getAll() {
+		log.info("Buscando Todos os Usuários do Sistema");
+		return this.userRepository.findAll();
 	}
 
 }

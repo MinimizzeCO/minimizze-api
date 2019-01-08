@@ -1,5 +1,6 @@
 package br.com.minimizze.api.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import br.com.minimizze.api.entities.User;
@@ -23,10 +24,17 @@ public interface UserService {
 	Optional<User> getUserByEmail(String email);
 	
 	/**
-	 * Busca um Usuario Pelo fbID
+	 * Busca um Usuario Pelo fbid
 	 * 
 	 * @param email
 	 * @return User
 	 */
-	Optional<User> getUserByFbID(String fbId);
+	Optional<User> getUserByFbid(String fbid);
+	
+	/**
+	 * Busca Todos os Usuarios
+	 * 
+	 * @return List<User>
+	 */
+	List<User> getAll();
 }
