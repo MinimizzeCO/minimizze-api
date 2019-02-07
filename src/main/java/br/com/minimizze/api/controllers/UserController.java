@@ -130,6 +130,6 @@ public class UserController {
 			result.addError(new ObjectError("user", "Esta user já foi Cadastrada no Sistema."));
 		}*/
 		this.userService.getUserByEmail(cadastroUserDto.getEmail())
-		.ifPresent(user -> result.addError(new ObjectError("user", "Esta user ja foi Cadastrada no Sistema.")));
+		.ifPresent(user -> result.addError(new ObjectError("user", "Este Usuário já foi Cadastradado no Sistema.")));
 	}
 }

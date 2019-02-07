@@ -1,5 +1,6 @@
 package br.com.minimizze.api.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -18,11 +19,11 @@ public class ListaCompraServiceImpl implements ListaCompraService {
 
 	@Autowired
 	private ListaCompraRepository listaCompraRepository;
-	
+
 	@Override
-	public Optional<ListaCompra> getAllListaCompra(Long id) {
+	public List<ListaCompra> getListaCompraByUser(Long id) {
 		log.info("Buscando Todas as Lista de Compras de um unico Usuario Pelo ID ", id);
-		return null;
+		return this.listaCompraRepository.findAllByUserFbid(id);
 	}
 
 	@Override
@@ -32,8 +33,15 @@ public class ListaCompraServiceImpl implements ListaCompraService {
 	}
 
 	@Override
-	public ListaCompra getListaCompraByUser(Long userId) {
-		log.info("Buscando Todas as Lista de Compras de um unico Usuario Pelo ID ", userId);
-		return this.listaCompraRepository.findByUserId(userId);
+	public Optional<ListaCompra> getListaCompraByName(String name) {
+		log.info("Buscando Todas as Lista de Compras de um unico Usuario Pelo ID ", name);
+		return this.listaCompraRepository.findByName(name);
+	}
+
+	@Override
+	public ListaCompra persistir(ListaCompra listaCompra) {
+		// TODO Auto-generated method stub
+		log.info("Salvando Lista: ", listaCompra.getName());
+		return this.listaCompraRepository.save(listaCompra);
 	}
 }

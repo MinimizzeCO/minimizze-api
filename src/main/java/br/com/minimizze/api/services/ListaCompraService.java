@@ -1,11 +1,20 @@
 package br.com.minimizze.api.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import br.com.minimizze.api.entities.ListaCompra;
 
 public interface ListaCompraService {
 
+
+	/**
+	 * Persiste um ListaCompra
+	 * 
+	 * @param ListaCompra
+	 * @return ListaCompra
+	 */
+	ListaCompra persistir(ListaCompra listaCompra);
 	/**
 	 * Retorna Todas as Listas de Compras de um Usuario
 	 * 
@@ -13,7 +22,7 @@ public interface ListaCompraService {
 	 * 
 	 * @return Optional<ListaCompra>
 	 */
-	Optional <ListaCompra> getAllListaCompra(Long id);
+	List <ListaCompra> getListaCompraByUser(Long id);
 	/**
 	 * Retorna Toda uma Lista de Compras
 	 * 
@@ -26,11 +35,11 @@ public interface ListaCompraService {
 	/**
 	 * Retorna uma Listas de Compras de um Usuario
 	 * 
-	 * @param ListaId
-	 * @param UserId
+	 * @param name
 	 * 
-	 * @return Optional<ListaCompra>
+	 * @return ListaCompra
 	 */
-	ListaCompra getListaCompraByUser(Long UserId);
+	Optional<ListaCompra> getListaCompraByName(String name);
+	
 	
 }

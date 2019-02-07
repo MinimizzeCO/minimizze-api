@@ -14,7 +14,7 @@ import br.com.minimizze.api.entities.User;
 	@NamedQuery(name = "User.consultaPorEmail", 
 			query = "SELECT u FROM User u WHERE u.email = :email"),
 	@NamedQuery(name = "User.consultaPorFbId", 
-			query = "SELECT u FROM User u WHERE u.fbid = :fbid"),
+				query = "SELECT u FROM User u WHERE u.fbid = :fbid"),
 	@NamedQuery(name = "User.consultarIdPorEmail", 
 			query = "SELECT u.id FROM User u WHERE u.email = :email") })
 

@@ -1,6 +1,5 @@
 package br.com.minimizze.api.dtos;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
@@ -10,15 +9,13 @@ import br.com.minimizze.api.entities.Orcamento;
 import br.com.minimizze.api.entities.Produto;
 import br.com.minimizze.api.entities.User;
 
-public class ListaCompraDto extends AbstractEntityDto implements Serializable {
-
-	private static final long serialVersionUID = -2916653125263688518L;
+public class ListaCompraDto extends AbstractEntityDto {
 
 	private Long id;
 
 	@NotNull
-	@NotEmpty(message="Nome nao Pode Ser Vazio.")
-	private String nome;
+	@NotEmpty(message="Name não Pode Ser Vazio.")
+	private String name;
 	private List<Produto> produtos;
 
 	private List<Orcamento> orcamentos;
@@ -31,8 +28,8 @@ public class ListaCompraDto extends AbstractEntityDto implements Serializable {
 		return id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
 	public List<Produto> getProdutos() {
@@ -47,8 +44,8 @@ public class ListaCompraDto extends AbstractEntityDto implements Serializable {
 		this.id = id;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setProdutos(List<Produto> produtos) {
