@@ -25,7 +25,7 @@ import br.com.minimizze.api.services.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/api/user/")
+@RequestMapping(value = "/api/user")
 public class UserController {
 
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -47,7 +47,7 @@ public class UserController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping
-	@RequestMapping(value = "store")
+	@RequestMapping(value = "/")
 	public ResponseEntity<Response<UserDto>> cadastrar(@Valid @RequestBody UserDto cadastroUserDto,BindingResult result) throws NoSuchAlgorithmException{
 		log.info("Cadastrando user",cadastroUserDto.toString());
 		

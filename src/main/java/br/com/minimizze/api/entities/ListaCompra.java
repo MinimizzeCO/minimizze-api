@@ -32,7 +32,7 @@ public class ListaCompra{
 	private List<Orcamento> orcamentos;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn
 	private User user;
 
 	private boolean status;
@@ -80,7 +80,6 @@ public class ListaCompra{
 	public User getUser() {
 		return user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}

@@ -34,14 +34,15 @@ public class ListaCompraServiceImpl implements ListaCompraService {
 
 	@Override
 	public Optional<ListaCompra> getListaCompraByName(String name) {
-		log.info("Buscando Todas as Lista de Compras de um unico Usuario Pelo ID ", name);
+		log.info("Buscando uma lista de Compra Pelo Nome ", name);
 		return this.listaCompraRepository.findByName(name);
 	}
 
 	@Override
 	public ListaCompra persistir(ListaCompra listaCompra) {
 		// TODO Auto-generated method stub
-		log.info("Salvando Lista: ", listaCompra.getName());
+		//log.info("Salvando Lista: ", listaCompra.getUser().getName());
+		System.out.println("Salvando Lista: "+listaCompra.getUser().getName());
 		return this.listaCompraRepository.save(listaCompra);
 	}
 }

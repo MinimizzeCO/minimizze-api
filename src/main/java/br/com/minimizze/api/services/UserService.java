@@ -29,7 +29,7 @@ public interface UserService {
 	 * @param email
 	 * @return User
 	 */
-	Optional<User> getUserByFbid(String fbid);
+	User findByFbid(String fbid);
 	
 	/**
 	 * Busca Todos os Usuarios
@@ -37,4 +37,12 @@ public interface UserService {
 	 * @return List<User>
 	 */
 	List<User> getAll();
+	
+	/**
+	 * Busca Um Usuário pelo ID
+	 * 
+	 * @param Long id
+	 * @return Optional<User>
+	 */
+	User getById(Long id);
 }

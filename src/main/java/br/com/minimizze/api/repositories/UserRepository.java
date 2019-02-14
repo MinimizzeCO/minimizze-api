@@ -13,7 +13,7 @@ import br.com.minimizze.api.entities.User;
 @NamedQueries({ 
 	@NamedQuery(name = "User.consultaPorEmail", 
 			query = "SELECT u FROM User u WHERE u.email = :email"),
-	@NamedQuery(name = "User.consultaPorFbId", 
+	@NamedQuery(name = "User.findByFbid", 
 				query = "SELECT u FROM User u WHERE u.fbid = :fbid"),
 	@NamedQuery(name = "User.consultarIdPorEmail", 
 			query = "SELECT u.id FROM User u WHERE u.email = :email") })
@@ -24,4 +24,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User findByEmail(String email);
 	
 	List<User> findAll();
+	
+	User getById(Long id);
+	
+	User findByFbid(String fbid);
 }

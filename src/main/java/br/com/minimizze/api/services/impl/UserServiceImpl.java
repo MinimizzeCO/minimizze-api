@@ -34,15 +34,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Optional<User> getUserByFbid(String fbId) {
+	public User findByFbid(String fbId) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.userRepository.findByFbid(fbId);
 	}
 
 	@Override
 	public List<User> getAll() {
 		log.info("Buscando Todos os Usuários do Sistema");
 		return this.userRepository.findAll();
+	}
+
+	@Override
+	public User getById(Long id) {
+		// TODO Auto-generated method stub
+		return this.userRepository.getById(id);
 	}
 
 }
