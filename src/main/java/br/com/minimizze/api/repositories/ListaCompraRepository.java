@@ -21,7 +21,7 @@ import java.util.Optional;
 				query = "SELECT lista FROM ListaCompra lista WHERE lista.user =:user"),
 		@NamedQuery(name = "ListaCompraRepository.findByName", 
 				query = "SELECT lista FROM ListaCompra lista WHERE lista.name =:name"),
-		@NamedQuery(name = "ListaCompraRepository.findAllByUserFbid", 
+		@NamedQuery(name = "ListaCompraRepository.findAllByUserUid", 
 				query = "SELECT lista FROM ListaCompra lista WHERE lista.user.id =:userId") 
 		})
 

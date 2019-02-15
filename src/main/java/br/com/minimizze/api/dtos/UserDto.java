@@ -1,12 +1,11 @@
 package br.com.minimizze.api.dtos;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
-import com.mysql.jdbc.Blob;
 
 public class UserDto extends AbstractEntityDto {
 	

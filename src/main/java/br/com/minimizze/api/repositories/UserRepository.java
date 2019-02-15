@@ -1,5 +1,6 @@
 package br.com.minimizze.api.repositories;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.NamedQueries;
@@ -7,8 +8,6 @@ import javax.persistence.NamedQuery;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.mysql.jdbc.Blob;
 
 import br.com.minimizze.api.entities.User;
 

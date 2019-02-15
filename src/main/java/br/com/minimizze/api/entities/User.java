@@ -1,5 +1,6 @@
 package br.com.minimizze.api.entities;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,6 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.Fetch;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.mysql.jdbc.Blob;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))

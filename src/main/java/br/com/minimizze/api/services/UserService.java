@@ -1,9 +1,8 @@
 package br.com.minimizze.api.services;
 
+import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
-
-import com.mysql.jdbc.Blob;
 
 import br.com.minimizze.api.entities.User;
 
