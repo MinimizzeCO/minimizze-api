@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mysql.jdbc.Blob;
+
 import br.com.minimizze.api.dtos.ListaCompraDto;
 import br.com.minimizze.api.entities.ListaCompra;
 import br.com.minimizze.api.entities.User;
@@ -53,15 +55,15 @@ public class ListaCompraController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping
-	@RequestMapping(value = "list/{userFbid}")
-	public ResponseEntity<Response<ListaCompraDto>> create(@PathVariable(value = "userFbid") String userFbid,
+	@RequestMapping(value = "list/{userUid}")
+	public ResponseEntity<Response<ListaCompraDto>> create(@PathVariable(value = "userUid") Blob userUid,
 			@Valid @RequestBody ListaCompraDto cadastroListaCompraDto, BindingResult result)
 			throws NoSuchAlgorithmException {
 		
 		Response<ListaCompraDto> response = new Response<ListaCompraDto>();
 
 		validarDadosExistentes(cadastroListaCompraDto, result);
-		ListaCompra lista = this.ListaCompraDtoTolista(userFbid, cadastroListaCompraDto, result);
+		ListaCompra lista = this.ListaCompraDtoTolista(userUid, cadastroListaCompraDto, result);
 
 		if (result.hasErrors()) {
 			log.info("Erro validando cadastro da lista", result.getAllErrors());
@@ -81,12 +83,12 @@ public class ListaCompraController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@GetMapping
-	@RequestMapping(value = "lists/{userFbid}")
-	public ResponseEntity<Response<List<ListaCompra>>> getListaCompras(@PathVariable(value = "userFbid") String userFbid) {
+	@RequestMapping(value = "lists/{userUid}")
+	public ResponseEntity<Response<List<ListaCompra>>> getListaCompras(@PathVariable(value = "userUid") Blob userUid) {
 		
 		//List<ListaCompra> listas = userService.findByFbid(userFbid).getListaCompras();
 		Response<List<ListaCompra>> response = new Response<List<ListaCompra>>();
-		response.setData(userService.findByFbid(userFbid).getListaCompras());
+		response.setData(userService.findByUid(userUid).getListaCompras());
 		
 		return ResponseEntity.ok(response);
 	}
@@ -115,12 +117,12 @@ public class ListaCompraController {
 	 * @return lista
 	 * @throws NoSuchAlgorithmException
 	 */
-	private ListaCompra ListaCompraDtoTolista(String userId, @Valid ListaCompraDto cadastroListaCompraDto,
+	private ListaCompra ListaCompraDtoTolista(Blob userUid, @Valid ListaCompraDto cadastroListaCompraDto,
 			BindingResult result) throws NoSuchAlgorithmException {
 		ListaCompra lista = new ListaCompra();
 		lista.setName(cadastroListaCompraDto.getName());
 		// log.info("USER", userService.getById(cadastroListaCompraDto.getUserId()));
-		User u = userService.findByFbid(userId);
+		User u = userService.findByUid(userUid);
 		System.out.println("Nome do Usuário" + u.getName());
 		System.out.println("Nome do Email" + u.getEmail());
 		lista.setUser(u);

@@ -8,13 +8,15 @@ import javax.persistence.NamedQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mysql.jdbc.Blob;
+
 import br.com.minimizze.api.entities.User;
 
 @NamedQueries({ 
 	@NamedQuery(name = "User.consultaPorEmail", 
 			query = "SELECT u FROM User u WHERE u.email = :email"),
-	@NamedQuery(name = "User.findByFbid", 
-				query = "SELECT u FROM User u WHERE u.fbid = :fbid"),
+	@NamedQuery(name = "User.findByUid", 
+				query = "SELECT u FROM User u WHERE u.uid = :uid"),
 	@NamedQuery(name = "User.consultarIdPorEmail", 
 			query = "SELECT u.id FROM User u WHERE u.email = :email") })
 
@@ -27,5 +29,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	User getById(Long id);
 	
-	User findByFbid(String fbid);
+	User findByUid(Blob uid);
 }

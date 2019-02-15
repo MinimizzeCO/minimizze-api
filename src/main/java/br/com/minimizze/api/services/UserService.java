@@ -3,6 +3,8 @@ package br.com.minimizze.api.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.mysql.jdbc.Blob;
+
 import br.com.minimizze.api.entities.User;
 
 public interface UserService {
@@ -29,7 +31,7 @@ public interface UserService {
 	 * @param email
 	 * @return User
 	 */
-	User findByFbid(String fbid);
+	User findByUid(Blob fbid);
 	
 	/**
 	 * Busca Todos os Usuarios

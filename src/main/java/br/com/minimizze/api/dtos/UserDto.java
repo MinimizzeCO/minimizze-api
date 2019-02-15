@@ -6,12 +6,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.mysql.jdbc.Blob;
+
 public class UserDto extends AbstractEntityDto {
 	
     private Long id;
     
 	@NotNull
-	private String fbid;
+	private Blob uid;
 	
 	@NotNull    
     @Size(min = 10, max = 50)
@@ -73,11 +75,11 @@ public class UserDto extends AbstractEntityDto {
 	public void setSimilar(List<SimilarDto> similar) {
 		this.similar = similar;
 	}
-	public String getFbid() {
-		return fbid;
+	public Blob getUid() {
+		return uid;
 	}
-	public void setFbid(String fbid) {
-		this.fbid = fbid;
+	public void setUid(Blob uid) {
+		this.uid = uid;
 	}
 	
 

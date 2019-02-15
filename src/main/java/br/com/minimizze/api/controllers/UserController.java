@@ -94,7 +94,7 @@ public class UserController {
 		userDto.setId(user.getId());
 		userDto.setName(user.getName());
 		userDto.setEmail(user.getEmail());
-		userDto.setFbid(user.getFbid());
+		userDto.setUid(user.getUid());
 		return userDto;
 	}
 
@@ -111,7 +111,7 @@ public class UserController {
 		User user = new User();
 		user.setName(cadastroUserDto.getName());
 		user.setEmail(cadastroUserDto.getEmail());
-		user.setFbid(cadastroUserDto.getFbid());
+		user.setUid(cadastroUserDto.getUid());
 		return user;
 	}
 

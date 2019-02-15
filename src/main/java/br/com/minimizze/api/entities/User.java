@@ -16,6 +16,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.Fetch;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.mysql.jdbc.Blob;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -24,7 +25,8 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-	private String fbid;
+	private Blob uid;
+	
 	private String name;
 	private String email;
 
@@ -89,11 +91,11 @@ public class User {
 	public void setSimilar(List<Similar> similar) {
 		this.similar = similar;
 	}
-	public String getFbid() {
-		return fbid;
+	public Blob getUid() {
+		return uid;
 	}
-	public void setFbid(String fbid) {
-		this.fbid = fbid;
+	public void setUid(Blob uid) {
+		this.uid = uid;
 	}
 	
 

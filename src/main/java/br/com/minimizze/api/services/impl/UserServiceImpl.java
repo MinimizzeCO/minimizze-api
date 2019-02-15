@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mysql.jdbc.Blob;
+
 import br.com.minimizze.api.entities.User;
 import br.com.minimizze.api.repositories.UserRepository;
 import br.com.minimizze.api.services.UserService;
@@ -34,9 +36,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByFbid(String fbId) {
+	public User findByUid(Blob uId) {
 		// TODO Auto-generated method stub
-		return this.userRepository.findByFbid(fbId);
+		return this.userRepository.findByUid(uId);
 	}
 
 	@Override
