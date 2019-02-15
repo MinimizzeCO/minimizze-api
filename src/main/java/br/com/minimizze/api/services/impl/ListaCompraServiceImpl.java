@@ -21,9 +21,9 @@ public class ListaCompraServiceImpl implements ListaCompraService {
 	private ListaCompraRepository listaCompraRepository;
 
 	@Override
-	public List<ListaCompra> getListaCompraByUser(Long id) {
-		log.info("Buscando Todas as Lista de Compras de um unico Usuario Pelo ID ", id);
-		return this.listaCompraRepository.findAllByUserFbid(id);
+	public List<ListaCompra> getByUser(Long user) {
+		log.info("Buscando Todas as Lista de Compras de um unico Usuario Pelo ID ", user);
+		return this.listaCompraRepository.findByUser(user);
 	}
 
 	@Override

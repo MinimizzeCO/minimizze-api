@@ -22,7 +22,7 @@ public interface ListaCompraService {
 	 * 
 	 * @return Optional<ListaCompra>
 	 */
-	List <ListaCompra> getListaCompraByUser(Long id);
+	List <ListaCompra> getByUser(Long user);
 	/**
 	 * Retorna Toda uma Lista de Compras
 	 * 

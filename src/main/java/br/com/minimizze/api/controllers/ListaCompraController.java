@@ -28,7 +28,7 @@ import br.com.minimizze.api.services.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/api/list")
+@RequestMapping(value = "/api/")
 public class ListaCompraController {
 
 	private static final Logger log = LoggerFactory.getLogger(ListaCompraController.class);
@@ -46,35 +46,33 @@ public class ListaCompraController {
 	/**
 	 * Cadastra um novo Usuário no Sistema
 	 * 
-	 * @param ListaCompraDto
-	 * @param result
-	 * 
+	 * @param ListaCompraDto cadastroListaCompraDto
+	 * @param BindingResult result
+	 * @param String user
 	 * @return ResponseEntity<Response<ListaCompraDto>>
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping
-	@RequestMapping(value = "/{user}")
-	public ResponseEntity<Response<ListaCompraDto>> cadastrar(@PathVariable (value = "user") String user, @Valid @RequestBody ListaCompraDto cadastroListaCompraDto,
-			BindingResult result) throws NoSuchAlgorithmException {
-		log.info(cadastroListaCompraDto.toString());
-		System.out.println("teste "+user);
+	@RequestMapping(value = "list/{userFbid}")
+	public ResponseEntity<Response<ListaCompraDto>> create(@PathVariable(value = "userFbid") String userFbid,
+			@Valid @RequestBody ListaCompraDto cadastroListaCompraDto, BindingResult result)
+			throws NoSuchAlgorithmException {
+		
 		Response<ListaCompraDto> response = new Response<ListaCompraDto>();
 
 		validarDadosExistentes(cadastroListaCompraDto, result);
-		ListaCompra lista = this.ListaCompraDtoTolista(user,cadastroListaCompraDto, result);
+		ListaCompra lista = this.ListaCompraDtoTolista(userFbid, cadastroListaCompraDto, result);
 
 		if (result.hasErrors()) {
 			log.info("Erro validando cadastro da lista", result.getAllErrors());
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
+		
 		this.listaService.persistir(lista);
-
-		response.setData(this.ListaToListaDto(lista));
+		response.setData(this.ListaToListaDto(lista));	
 		return ResponseEntity.ok(response);
 	}
-
-	
 
 	/**
 	 * Retorna Todos as Lista de um Usuário no Sistema
@@ -82,13 +80,15 @@ public class ListaCompraController {
 	 * @return ResponseEntity<List<ListaCompraDto>>
 	 * @throws NoSuchAlgorithmException
 	 */
-
 	@GetMapping
-	@RequestMapping(value = "getall")
-	public ResponseEntity<List<ListaCompra>> getListaCompras(Long userFbid) {
-		List<ListaCompra> listas = this.listaService.getListaCompraByUser(userFbid);
-
-		return ResponseEntity.ok(listas);
+	@RequestMapping(value = "lists/{userFbid}")
+	public ResponseEntity<Response<List<ListaCompra>>> getListaCompras(@PathVariable(value = "userFbid") String userFbid) {
+		
+		//List<ListaCompra> listas = userService.findByFbid(userFbid).getListaCompras();
+		Response<List<ListaCompra>> response = new Response<List<ListaCompra>>();
+		response.setData(userService.findByFbid(userFbid).getListaCompras());
+		
+		return ResponseEntity.ok(response);
 	}
 
 	/**
@@ -115,12 +115,12 @@ public class ListaCompraController {
 	 * @return lista
 	 * @throws NoSuchAlgorithmException
 	 */
-	private ListaCompra ListaCompraDtoTolista(String userId, @Valid ListaCompraDto cadastroListaCompraDto, BindingResult result)
-			throws NoSuchAlgorithmException {
+	private ListaCompra ListaCompraDtoTolista(String userId, @Valid ListaCompraDto cadastroListaCompraDto,
+			BindingResult result) throws NoSuchAlgorithmException {
 		ListaCompra lista = new ListaCompra();
 		lista.setName(cadastroListaCompraDto.getName());
-		//log.info("USER", userService.getById(cadastroListaCompraDto.getUserId()));
-		User u =userService.findByFbid(userId);
+		// log.info("USER", userService.getById(cadastroListaCompraDto.getUserId()));
+		User u = userService.findByFbid(userId);
 		System.out.println("Nome do Usuário" + u.getName());
 		System.out.println("Nome do Email" + u.getEmail());
 		lista.setUser(u);
@@ -141,7 +141,7 @@ public class ListaCompraController {
 		 * (!lista.isPresent()) { result.addError(new ObjectError("lista",
 		 * "Esta lista já foi Cadastrada no Sistema.")); }
 		 */
-		
+
 		this.listaService.getListaCompraByName(cadastroListaCompraDto.getName()).ifPresent(
 				lista -> result.addError(new ObjectError("lista", "Esta lista ja foi Cadastrada no Sistema.")));
 

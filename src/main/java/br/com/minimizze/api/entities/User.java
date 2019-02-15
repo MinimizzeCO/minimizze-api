@@ -15,6 +15,8 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Fetch;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
@@ -26,8 +28,9 @@ public class User {
 	private String name;
 	private String email;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
+	@JsonManagedReference
 	private List<ListaCompra> listaCompras;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

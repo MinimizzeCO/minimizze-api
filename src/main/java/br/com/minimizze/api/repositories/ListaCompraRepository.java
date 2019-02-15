@@ -17,12 +17,12 @@ import java.util.Optional;
 
 @Transactional(readOnly = true)
 @NamedQueries({
-		@NamedQuery(name = "ListaCompraRepository.findByUserId", 
-				query = "SELECT lista FROM ListaCompra lista WHERE lista.user.id =:userId"),
+		@NamedQuery(name = "ListaCompraRepository.findByUser", 
+				query = "SELECT lista FROM ListaCompra lista WHERE lista.user =:user"),
 		@NamedQuery(name = "ListaCompraRepository.findByName", 
 				query = "SELECT lista FROM ListaCompra lista WHERE lista.name =:name"),
 		@NamedQuery(name = "ListaCompraRepository.findAllByUserFbid", 
-				query = "SELECT lista FROM ListaCompra lista WHERE lista.user.fbid =:userFbid") 
+				query = "SELECT lista FROM ListaCompra lista WHERE lista.user.id =:userId") 
 		})
 
 public interface ListaCompraRepository extends JpaRepository<ListaCompra, Long> {
@@ -33,7 +33,8 @@ public interface ListaCompraRepository extends JpaRepository<ListaCompra, Long> 
 	
 	Optional<ListaCompra> findByName(String name);
 	
-	List<ListaCompra> findAllByUserFbid(Long userFbid);
+	List<ListaCompra> findByUser(@Param("user") Long user);
+	
 	// Page<ListaCompra> findByUserId(@Param("userId") Long userId, Pageable
 	// pageable);
 }

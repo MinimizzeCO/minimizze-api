@@ -47,7 +47,6 @@ public class UserController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping
-	@RequestMapping(value = "/")
 	public ResponseEntity<Response<UserDto>> cadastrar(@Valid @RequestBody UserDto cadastroUserDto,BindingResult result) throws NoSuchAlgorithmException{
 		log.info("Cadastrando user",cadastroUserDto.toString());
 		
@@ -75,11 +74,10 @@ public class UserController {
 	 */
 	
 	@GetMapping
-	@RequestMapping(value = "getall")
-	public ResponseEntity<List<User>> getUsers() {
-		List<User> users = this.userService.getAll();
-		
-		return ResponseEntity.ok(users);
+	public ResponseEntity<Response<List<User>>> getUsers() {
+		Response<List<User>> response = new Response<List<User>>();
+		response.setData(this.userService.getAll());
+		return ResponseEntity.ok(response);
 	}
 	
 	/**

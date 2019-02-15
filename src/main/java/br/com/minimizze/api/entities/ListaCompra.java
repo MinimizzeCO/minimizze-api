@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class ListaCompra{
 
@@ -31,8 +33,9 @@ public class ListaCompra{
 	@Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
 	private List<Orcamento> orcamentos;
 
-	@ManyToOne
-	@JoinColumn
+	@ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	@JsonBackReference
 	private User user;
 
 	private boolean status;
