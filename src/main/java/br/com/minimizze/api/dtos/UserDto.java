@@ -1,6 +1,5 @@
 package br.com.minimizze.api.dtos;
 
-import java.sql.Blob;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -11,8 +10,7 @@ public class UserDto extends AbstractEntityDto {
 	
     private Long id;
     
-	@NotNull
-	private Blob uid;
+    private byte[] uid;
 	
 	@NotNull    
     @Size(min = 10, max = 50)
@@ -74,10 +72,10 @@ public class UserDto extends AbstractEntityDto {
 	public void setSimilar(List<SimilarDto> similar) {
 		this.similar = similar;
 	}
-	public Blob getUid() {
+	public byte[] getUid() {
 		return uid;
 	}
-	public void setUid(Blob uid) {
+	public void setUid(byte[] uid) {
 		this.uid = uid;
 	}
 	
