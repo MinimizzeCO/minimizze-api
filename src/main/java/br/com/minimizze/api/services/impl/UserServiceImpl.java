@@ -1,6 +1,5 @@
 package br.com.minimizze.api.services.impl;
 
-import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,9 +34,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByUid(Blob uId) {
+	public User findByUid(byte[] uid) {
 		// TODO Auto-generated method stub
-		return this.userRepository.findByUid(uId);
+		return this.userRepository.findByUid(uid);
 	}
 
 	@Override

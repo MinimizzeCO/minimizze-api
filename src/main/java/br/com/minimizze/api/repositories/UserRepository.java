@@ -1,6 +1,5 @@
 package br.com.minimizze.api.repositories;
 
-import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.NamedQueries;
@@ -28,5 +27,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	User getById(Long id);
 	
-	User findByUid(Blob uid);
+	User findByUid(byte[] uid);
 }

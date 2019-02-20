@@ -1,6 +1,5 @@
 package br.com.minimizze.api.services;
 
-import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +29,7 @@ public interface UserService {
 	 * @param email
 	 * @return User
 	 */
-	User findByUid(Blob fbid);
+	User findByUid(byte[] fbid);
 	
 	/**
 	 * Busca Todos os Usuarios

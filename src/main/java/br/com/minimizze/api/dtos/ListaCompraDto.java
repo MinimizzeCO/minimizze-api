@@ -16,12 +16,16 @@ public class ListaCompraDto extends AbstractEntityDto {
 	@NotNull
 	@NotEmpty(message="Name não Pode Ser Vazio.")
 	private String name;
+	
 	private List<Produto> produtos;
 
 	private List<Orcamento> orcamentos;
 
 	private User user;
-
+	
+	@NotNull
+	private byte[] uid;
+	
 	private boolean status;
 
 	public Long getId() {
@@ -70,6 +74,14 @@ public class ListaCompraDto extends AbstractEntityDto {
 	
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public byte[] getUid() {
+		return uid;
+	}
+
+	public void setUid(byte[] uid) {
+		this.uid = uid;
 	}
 
 }

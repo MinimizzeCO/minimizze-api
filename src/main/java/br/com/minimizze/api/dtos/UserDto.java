@@ -2,6 +2,7 @@ package br.com.minimizze.api.dtos;
 
 import java.util.List;
 
+import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -10,6 +11,8 @@ public class UserDto extends AbstractEntityDto {
 	
     private Long id;
     
+    @NotNull
+    @Lob
     private byte[] uid;
 	
 	@NotNull    
