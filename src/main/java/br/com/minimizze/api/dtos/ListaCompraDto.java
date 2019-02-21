@@ -24,7 +24,7 @@ public class ListaCompraDto extends AbstractEntityDto {
 	private User user;
 	
 	@NotNull
-	private byte[] uid;
+	private String email;
 	
 	private boolean status;
 
@@ -76,12 +76,12 @@ public class ListaCompraDto extends AbstractEntityDto {
 		this.user = user;
 	}
 
-	public byte[] getUid() {
-		return uid;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUid(byte[] uid) {
-		this.uid = uid;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

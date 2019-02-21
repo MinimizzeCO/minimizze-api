@@ -123,7 +123,7 @@ public class ListaCompraController {
 		ListaCompra lista = new ListaCompra();
 		lista.setName(cadastroListaCompraDto.getName());
 		// log.info("USER", userService.getById(cadastroListaCompraDto.getUserId()));
-		User u = userService.findByUid(cadastroListaCompraDto.getUid());
+		User u = userService.getUserByEmail(cadastroListaCompraDto.getEmail()).get();
 		System.out.println("Nome do Usuário" + u.getName());
 		System.out.println("Nome do Email" + u.getEmail());
 		lista.setUser(u);
