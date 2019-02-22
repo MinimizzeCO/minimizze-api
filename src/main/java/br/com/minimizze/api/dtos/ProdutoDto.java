@@ -3,75 +3,53 @@ package br.com.minimizze.api.dtos;
 import java.sql.Blob;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Fetch;
-
+import br.com.minimizze.api.entities.CategoriaProduto;
+import br.com.minimizze.api.entities.ListaCompra;
+import br.com.minimizze.api.entities.Marca;
 import br.com.minimizze.api.entities.Similar;
+import br.com.minimizze.api.entities.UnidadeMedida;
 import br.com.minimizze.api.entities.User;
 
-public class ProdutoDto extends AbstractEntityDto {
+public class ProdutoDto {
 
-	@Override
-	public String toString() {
-		return nome +" "+ marca.getNome() +" "+ qtdMedida +" "+ unidadeMedida.getSigla();
-	}
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 
 	@NotNull(message="Preencha o Campo")
 	@Size(min = 2, max = 30)
-	private String nome;
+	private String name;
 
+	private Marca marca;
+	
 	@NotNull(message="Escolha uma Marca")
-	@ManyToOne
-	private MarcaDto marca;
-
+	private long marcaId;
+	private long categoriaProdutoId;
 	private Blob foto;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@Fetch(org.hibernate.annotations.FetchMode.SELECT)
 	private List<Similar> similares;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@Fetch(org.hibernate.annotations.FetchMode.SELECT)
-	private List<ListaCompraDto> listaCompra;
+	private List<ListaCompra> listaCompra;
 
 	@NotNull (message="Preencha o Campo")
 	private String codigoBarra;
 
-	@NotNull (message="Preencha o Campo")
-	@ManyToOne
-	private CategoriaProdutoDto categoriaProduto;
+	private CategoriaProduto categoriaProduto;
 
-	@NotNull(message="Escolha uma Unidade de Medida")
-	@ManyToOne
-	private UnidadeMedidaDto unidadeMedida;
+	//@NotNull(message="Escolha uma Unidade de Medida")
+	private UnidadeMedida unidadeMedida;
 
-	public List<ListaCompraDto> getListaCompra() {
+	public List<ListaCompra> getListaCompra() {
 		return listaCompra;
 	}
 
-	public void setListaCompra(List<ListaCompraDto> listaCompra) {
+	public void setListaCompra(List<ListaCompra> listaCompra) {
 		this.listaCompra = listaCompra;
 	}
 
-	@NotNull
-	@ManyToOne
 	private User user;
 
-	@NotNull
 	@DecimalMax("99999.999999")
 	private Double qtdMedida;
 
@@ -84,19 +62,19 @@ public class ProdutoDto extends AbstractEntityDto {
 		this.setValido(true);
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public MarcaDto getMarca() {
+	public Marca getMarca() {
 		return marca;
 	}
 
-	public UnidadeMedidaDto getUnidadeMedida() {
+	public UnidadeMedida getUnidadeMedida() {
 		return unidadeMedida;
 	}
 
@@ -116,23 +94,23 @@ public class ProdutoDto extends AbstractEntityDto {
 		return codigoBarra;
 	}
 
-	public CategoriaProdutoDto getCategoriaProduto() {
+	public CategoriaProduto getCategoriaProduto() {
 		return categoriaProduto;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setMarca(MarcaDto marca) {
+	public void setMarca(Marca marca) {
 		this.marca = marca;
 	}
 
-	public void setUnidadeMedida(UnidadeMedidaDto unidadeMedida) {
+	public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
 		this.unidadeMedida = unidadeMedida;
 	}
 
@@ -152,7 +130,7 @@ public class ProdutoDto extends AbstractEntityDto {
 		this.codigoBarra = codigoBarra;
 	}
 
-	public void setCategoriaProduto(CategoriaProdutoDto categoriaProduto) {
+	public void setCategoriaProduto(CategoriaProduto categoriaProduto) {
 		this.categoriaProduto = categoriaProduto;
 	}
 
@@ -178,6 +156,22 @@ public class ProdutoDto extends AbstractEntityDto {
 
 	public void setSimilares(List<Similar> similares) {
 		this.similares = similares;
+	}
+
+	public long getMarcaId() {
+		return marcaId;
+	}
+
+	public void setMarcaId(long marcaId) {
+		this.marcaId = marcaId;
+	}
+
+	public long getCategoriaProdutoId() {
+		return categoriaProdutoId;
+	}
+
+	public void setCategoriaProdutoId(long categoriaProdutoId) {
+		this.categoriaProdutoId = categoriaProdutoId;
 	}
 
 }

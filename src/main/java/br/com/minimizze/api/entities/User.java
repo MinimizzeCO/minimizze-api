@@ -25,7 +25,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 	
 	@Lob
     @Column(name = "uid", columnDefinition="BLOB")
@@ -49,7 +49,7 @@ public class User {
 
 	private int pontuacao;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 	public String getName() {
@@ -65,7 +65,7 @@ public class User {
 	public int getPontuacao() {
 		return pontuacao;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public void setName(String name) {

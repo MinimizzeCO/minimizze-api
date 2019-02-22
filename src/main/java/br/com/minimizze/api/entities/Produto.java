@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * @author Vitor
@@ -29,20 +32,23 @@ public class Produto{
 
 	@Override
 	public String toString() {
-		return nome +" "+ marca.getNome() +" "+ qtdMedida +" "+ unidadeMedida.getSigla();
+		return name +" "+ marca.getName() +" "+ qtdMedida +" "+ unidadeMedida.getSigla();
 	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nome;
+	private String name;
+	
 	private Blob foto;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@Fetch(org.hibernate.annotations.FetchMode.SELECT)
+	@JsonBackReference
 	private Marca marca;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	@Fetch(org.hibernate.annotations.FetchMode.SELECT)
 	private List<Similar> similares;
 
@@ -81,9 +87,9 @@ public class Produto{
 	public Long getId() {
 		return id;
 	}
-	@Column(name="nome", nullable=false)
-	public String getNome() {
-		return nome;
+	@Column(name="name", nullable=false)
+	public String getName() {
+		return name;
 	}
 	@Column(name="marca", nullable=false)
 	public Marca getMarca() {
@@ -131,8 +137,8 @@ public class Produto{
 		this.id = id;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setMarca(Marca marca) {

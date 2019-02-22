@@ -25,7 +25,7 @@ import br.com.minimizze.api.services.MarcaService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/api/")
+@RequestMapping(value = "/api/marca")
 public class MarcaController {
 
 	private static final Logger log = LoggerFactory.getLogger(MarcaController.class);
@@ -47,7 +47,7 @@ public class MarcaController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping
-	@RequestMapping(value = "cadastro-marca")
+	@RequestMapping
 	public ResponseEntity<Response<MarcaDto>> cadastrar(@Valid @RequestBody MarcaDto cadastroMarcaDto,BindingResult result) throws NoSuchAlgorithmException{
 		log.info("Cadastrando Marca",cadastroMarcaDto.toString());
 		
@@ -95,7 +95,7 @@ public class MarcaController {
 		MarcaDto marcaDto= new MarcaDto();
 		
 		marcaDto.setId(marca.getId());
-		marcaDto.setNome(marca.getNome());
+		marcaDto.setName(marca.getName());
 		return marcaDto;
 	}
 
@@ -110,7 +110,7 @@ public class MarcaController {
 	private Marca marcaDtoToMarca(@Valid MarcaDto cadastroMarcaDto, BindingResult result) 
 		throws NoSuchAlgorithmException{
 		Marca marca = new Marca();
-		marca.setNome(cadastroMarcaDto.getNome());
+		marca.setName(cadastroMarcaDto.getName());
 		return marca;
 	}
 
@@ -126,7 +126,7 @@ public class MarcaController {
 		if (!marca.isPresent()) {
 			result.addError(new ObjectError("marca", "Esta Marca já foi Cadastrada no Sistema."));
 		}*/
-		this.marcaService.gerMarcaByNome(cadastroMarcaDto.getNome())
+		this.marcaService.gerMarcaByNome(cadastroMarcaDto.getName())
 		.ifPresent(marc -> result.addError(new ObjectError("marca", "Esta Marca ja foi Cadastrada no Sistema.")));
 	}
 }

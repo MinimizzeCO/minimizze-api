@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 public class MarcaDto extends AbstractEntityDto {
 
 	private Long id;
-	private String nome;
+	private String name;
 	private Optional<Boolean> valido = Optional.empty();
 	private Optional<Integer> pontuacao = Optional.empty();
 
@@ -19,8 +19,8 @@ public class MarcaDto extends AbstractEntityDto {
 	@NotNull
 	@NotEmpty(message="Nome nao Pode Ser Vazio.")
 	@Length(min=3, max=50, message="Nome da Marca Deve conter entre 3 a 50 Caracteres")
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
 	public Optional<Boolean> isValido() {
@@ -31,8 +31,8 @@ public class MarcaDto extends AbstractEntityDto {
 		return pontuacao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setValido(Optional<Boolean> valido) {
@@ -53,7 +53,7 @@ public class MarcaDto extends AbstractEntityDto {
 	
 	@Override
 	public String toString() {
-		return "MarcaDto [id=" + id +", nome=" + nome + "]";
+		return "MarcaDto [id=" + id +", nome=" + name + "]";
 	}
 
 }

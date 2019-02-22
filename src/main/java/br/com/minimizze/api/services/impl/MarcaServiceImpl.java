@@ -35,12 +35,12 @@ public class MarcaServiceImpl implements MarcaService {
 	@Override
 	public Optional<Marca> gerMarcaByNome(String nome) {
 		log.info("Buscando a Marca Pelo Nome: ",nome);
-		return this.marcaRepository.findByNome(nome);
+		return this.marcaRepository.findByName(nome);
 	}
 
 	@Override
 	public Marca persistir(Marca marca) {
-		log.info("Persistindo Marca", marca.getNome());
+		log.info("Persistindo Marca", marca.getName());
 		return this.marcaRepository.save(marca);
 	}
 

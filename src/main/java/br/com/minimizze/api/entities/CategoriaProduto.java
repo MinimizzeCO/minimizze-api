@@ -16,7 +16,7 @@ public class CategoriaProduto{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nome;
+	private String name;
 	
 	@ManyToOne
 	private CategoriaProduto categoriaProdutoPai; 
@@ -28,8 +28,8 @@ public class CategoriaProduto{
 		return id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
 	public List<CategoriaProduto> getSubcategoria() {
@@ -40,8 +40,8 @@ public class CategoriaProduto{
 		this.id = id;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setSubcategoria(List<CategoriaProduto> subcategoria) {

@@ -3,19 +3,19 @@ package br.com.minimizze.api.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.minimizze.api.entities.Marca;
+import br.com.minimizze.api.entities.Produto;
 
 import java.lang.Long;
 import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface MarcaRepository extends JpaRepository<Marca, Long> {
+public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-	Optional<Marca> findById(Long id);
+	Optional<Produto> findById(Long id);
 	
-	Optional<Marca> findByName(String nome);
+	Optional<Produto> findByName(String nome);
 	
-	List<Marca> findAll();
+	List<Produto> findAll();
 	
 }
