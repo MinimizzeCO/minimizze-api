@@ -15,6 +15,14 @@ public interface ListaCompraService {
 	 * @return ListaCompra
 	 */
 	ListaCompra persistir(ListaCompra listaCompra);
+	
+	/**
+	 * Atualiza uma ListaCompra
+	 * 
+	 * @param ListaCompra
+	 * @return ListaCompra
+	 */
+	ListaCompra update(ListaCompra listaCompra);
 	/**
 	 * Retorna Todas as Listas de Compras de um Usuario
 	 * 

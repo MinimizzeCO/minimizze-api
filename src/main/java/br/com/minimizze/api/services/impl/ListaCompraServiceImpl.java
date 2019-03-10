@@ -42,7 +42,13 @@ public class ListaCompraServiceImpl implements ListaCompraService {
 	public ListaCompra persistir(ListaCompra listaCompra) {
 		// TODO Auto-generated method stub
 		//log.info("Salvando Lista: ", listaCompra.getUser().getName());
-		System.out.println("Salvando Lista: "+listaCompra.getUser().getName());
+		//System.out.println("Salvando Lista: "+listaCompra.getUser().getName());
+		return this.listaCompraRepository.save(listaCompra);
+	}
+
+	@Override
+	public ListaCompra update(ListaCompra listaCompra) {
+		// TODO Auto-generated method stub
 		return this.listaCompraRepository.save(listaCompra);
 	}
 }

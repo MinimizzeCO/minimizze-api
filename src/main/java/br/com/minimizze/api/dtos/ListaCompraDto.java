@@ -13,9 +13,9 @@ public class ListaCompraDto extends AbstractEntityDto {
 
 	private Long id;
 
-	@NotNull
-	@NotEmpty(message="Name não Pode Ser Vazio.")
 	private String name;
+	
+	private Long[] produtosId;
 	
 	private List<Produto> produtos;
 
@@ -23,7 +23,6 @@ public class ListaCompraDto extends AbstractEntityDto {
 
 	private User user;
 	
-	@NotNull
 	private String email;
 	
 	private boolean status;
@@ -82,6 +81,14 @@ public class ListaCompraDto extends AbstractEntityDto {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Long[] getProdutosId() {
+		return produtosId;
+	}
+
+	public void setProdutosId(Long[] produtosId) {
+		this.produtosId = produtosId;
 	}
 
 }

@@ -1,6 +1,7 @@
 package br.com.minimizze.api.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,7 +22,7 @@ import br.com.minimizze.api.entities.User;
 @Transactional(readOnly=true)
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	User findByEmail(String email);
+	Optional<User> findByEmail(String email);
 	
 	List<User> findAll();
 	
