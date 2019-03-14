@@ -119,7 +119,7 @@ public class ListaCompraController {
 		Long[] produtosId = cadastroListaCompraDto.getProdutosId();
 		System.out.println("LISTA " + cadastroListaCompraDto);
 		for (Long ids : produtosId) {
-			System.out.println("IIIIIDDDDDDDD " + ids);
+			//System.out.println("IIIIIDDDDDDDD " + ids);
 			lista.getProdutos().add(produtoService.getProduto(ids).get());
 		}
 		

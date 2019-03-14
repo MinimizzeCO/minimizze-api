@@ -29,7 +29,7 @@ import br.com.minimizze.api.services.ProdutoService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/api/produto")
+@RequestMapping(value = "/api/")
 public class ProdutoController {
 
 	private static final Logger log = LoggerFactory.getLogger(ProdutoController.class);
@@ -57,7 +57,7 @@ public class ProdutoController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping
-	@RequestMapping
+	@RequestMapping(value="product")
 	public ResponseEntity<Response<ProdutoDto>> cadastrar(@Valid @RequestBody ProdutoDto cadastroProdutoDto,BindingResult result) throws NoSuchAlgorithmException{
 		log.info("Cadastrando Produto",cadastroProdutoDto.toString());
 		
@@ -84,7 +84,7 @@ public class ProdutoController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@GetMapping
-	@RequestMapping(value = "produtos")
+	@RequestMapping(value = "products")
 	public ResponseEntity<List<Produto>> getProdutos() throws NoSuchAlgorithmException{
 		
 		List<Produto> produto = this.produtoService.getAllProdutos();
